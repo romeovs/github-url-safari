@@ -3,6 +3,8 @@
 A Safari extension that rewrites urls like `romeovs/github-url-safari` to
 `https://www.github.com/romeovs/github-url-safari`.
 
+![example](https://raw.github.com/romeovs/github-url-safari/master/example.gif)
+
 ## Licence
 This code is licensed under the [MIT License][2]
 
