@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset='utf-8'>
+<title>Github URL Extension</title>
+
+<script>
+  (function () {
+    "use strict";
+
+    var re = /^[^\/]*\/[^\/]*$/;
+
+    console.log("LOADED");
+
+    safari.application.addEventListener('beforeNavigate', function (event) {
+      var url = event.url;
+
+      if ( /https:\/\/www.google.com\/search\?/.test(url) ) {
+
+        var query = url.split('?')[1];
+        var parts = query.split('&');
+
+        var repo = parts.reduce(function (acc, next) {
+          var split = next.split('=');
+          var name  = split[0];
+          var value = split[1];
+
+          return name === 'q' ? value : acc;
+        }, false);
+
+        if ( re.test(repo) ) {
+          var newurl = 'https://github.com/' + repo;
+          event.preventDefault();
+          event.target.url = newurl;
+        }
+      }
+    });
+  })();
+</script>
